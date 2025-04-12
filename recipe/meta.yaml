@@ -1,5 +1,5 @@
 {% set name = "buildingregulariser" %}
-{% set version = "0.1.11" %}
+{% set version = "0.1.12" %}
 {% set python_min = "3.10" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/buildingregulariser-{{ version }}.tar.gz
-  sha256: b40a5bacf637294095fb0cfe252e5d337035b7ad64c18be12c16dcce6d5ab486
+  sha256: 27f8ace73d2db5ed355ebe648b23193e32041643d86edd57daf793b6b19a4078
 
 build:
   noarch: python
