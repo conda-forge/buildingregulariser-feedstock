@@ -13,25 +13,28 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
     - python {{ python_min }}
-    - setuptools >=61.0
+    - setuptools >=68
+    - setuptools-scm >=8
     - wheel
     - pip
   run:
     - python >={{ python_min }}
     - geopandas >=1.0.1
     - numpy >=2.2.4
-    - scipy >=1.15.2
 
 test:
   imports:
     - buildingregulariser
   commands:
     - pip check
+    # Guards against setuptools-scm being absent from `host:`, which makes the
+    # build silently produce version 0.0.0 rather than failing.
+    - python -c "import buildingregulariser; assert buildingregulariser.__version__ == '{{ version }}', buildingregulariser.__version__"
   requires:
     - pip
     - python {{ python_min }}
